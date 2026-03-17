@@ -1,6 +1,64 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>De-ice Fuel</title>
 <script src="airports.js"></script>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f2f2f7;padding:20px 16px 40px}h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:8px}.disclaimer{background:#fce8e8;border-radius:12px;padding:12px 14px;margin-bottom:20px}.disclaimer-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c0392b;margin-bottom:4px}.disclaimer-body{font-size:11px;color:#7b1f1f;line-height:1.5}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}.lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}.lbl-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:20px;line-height:1.4}.badge-auto{background:#007aff;color:#fff}.badge-manual{background:#e0e0e5;color:#48484a}.fl{font-size:13px;color:#8e8e93;margin-bottom:3px}.fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}.fr:last-child{margin-bottom:0}.fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1.5px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}.fr input:focus{outline:none}.fr input.target-auto{color:#007aff;border-color:#007aff;background:#f0f6ff}.fr input.target-manual{color:#1c1c1e;border-color:#e0e0e5;background:#f9f9fb}.fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}.unit{font-size:15px;color:#8e8e93;min-width:28px}.sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}.sgn:active{background:#bdd4f8}.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid #007aff;margin-bottom:0}.seg button{flex:1;padding:10px 6px;font-size:14px;font-weight:600;border:none;background:#fff;color:#007aff;cursor:pointer}.seg button.active{background:#007aff;color:#fff}.fetch-btn{flex-shrink:0;padding:10px 14px;font-size:14px;font-weight:600;border-radius:10px;border:none;background:#007aff;color:#fff;cursor:pointer;white-space:nowrap}.fetch-btn:active{background:#0062cc}.wx-info{font-size:12px;color:#8e8e93;margin-top:8px;min-height:16px}.target-hint{font-size:11px;color:#8e8e93;margin-top:6px;line-height:1.4}button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}.res{border-radius:14px;padding:16px;margin-bottom:12px}.rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}.rv{font-size:38px;font-weight:700;line-height:1.1}.rs{font-size:13px;margin-top:5px;opacity:.85}.info{background:#e8f0fe;color:#1a56db}.ok{background:#e6f4ea;color:#1e6e3c}.warn{background:#fef3e2;color:#b45309}.err{background:#fce8e8;color:#c0392b}.cap{background:#fff3e0;color:#e65100}.det{background:#fff;border-radius:14px;padding:16px}.note{font-size:11px;color:#8e8e93;margin-top:10px;text-align:center}table{width:100%;font-size:14px;border-collapse:collapse}td{padding:5px 0}td:last-child{text-align:right;font-weight:500;color:#1c1c1e}td:first-child{color:#8e8e93}.sep td{border-top:1px solid #e5e5ea;padding-top:9px}.frost-box{border-radius:14px;padding:16px;margin-bottom:12px}.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}.frost-row{display:flex;align-items:flex-start;gap:10px}.frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}.frost-main{font-size:15px;font-weight:600;margin-bottom:3px}.frost-sub{font-size:12px;opacity:.85;line-height:1.5}.f-green{background:#e6f4ea;color:#1e6e3c}.f-yellow{background:#fef3e2;color:#b45309}.f-orange{background:#fff3e0;color:#e65100}.f-red{background:#fce8e8;color:#c0392b}</style></head><body>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,sans-serif;background:#f2f2f7;padding:20px 16px 40px}
+h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:8px}
+.disclaimer{background:#fce8e8;border-radius:12px;padding:12px 14px;margin-bottom:20px}
+.disclaimer-title{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c0392b;margin-bottom:4px}
+.disclaimer-body{font-size:11px;color:#7b1f1f;line-height:1.5}
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}
+.lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}
+.lbl-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:20px;line-height:1.4}
+.badge-auto{background:#007aff;color:#fff}
+.badge-manual{background:#e0e0e5;color:#48484a}
+.fl{font-size:13px;color:#8e8e93;margin-bottom:3px}
+.fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.fr:last-child{margin-bottom:0}
+.fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1.5px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}
+.fr input:focus{outline:none;border-color:#007aff}
+.fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}
+.unit{font-size:15px;color:#8e8e93;min-width:28px}
+.sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.sgn:active{background:#bdd4f8}
+.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid #007aff;margin-bottom:0}
+.seg button{flex:1;padding:10px 6px;font-size:14px;font-weight:600;border:none;background:#fff;color:#007aff;cursor:pointer}
+.seg button.active{background:#007aff;color:#fff}
+.fetch-btn{flex-shrink:0;padding:10px 14px;font-size:14px;font-weight:600;border-radius:10px;border:none;background:#007aff;color:#fff;cursor:pointer;white-space:nowrap}
+.fetch-btn:active{background:#0062cc}
+.wx-info{font-size:12px;color:#8e8e93;margin-top:8px;min-height:16px}
+.hint{font-size:11px;color:#8e8e93;margin-top:6px;line-height:1.4}
+button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}
+.section-head{font-size:13px;font-weight:600;color:#48484a;margin:20px 0 10px;padding-left:4px;letter-spacing:.01em}
+.res{border-radius:14px;padding:16px;margin-bottom:12px}
+.rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.rv{font-size:38px;font-weight:700;line-height:1.1}
+.rs{font-size:13px;margin-top:5px;opacity:.85}
+.info{background:#e8f0fe;color:#1a56db}
+.ok{background:#e6f4ea;color:#1e6e3c}
+.warn{background:#fef3e2;color:#b45309}
+.err{background:#fce8e8;color:#c0392b}
+.cap{background:#fff3e0;color:#e65100}
+.det{background:#fff;border-radius:14px;padding:16px}
+.note{font-size:11px;color:#8e8e93;margin-top:10px;text-align:center}
+table{width:100%;font-size:14px;border-collapse:collapse}
+td{padding:5px 0}
+td:last-child{text-align:right;font-weight:500;color:#1c1c1e}
+td:first-child{color:#8e8e93}
+.sep td{border-top:1px solid #e5e5ea;padding-top:9px}
+.frost-box{border-radius:14px;padding:16px;margin-bottom:12px}
+.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.frost-row{display:flex;align-items:flex-start;gap:10px}
+.frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}
+.frost-main{font-size:15px;font-weight:600;margin-bottom:3px}
+.frost-sub{font-size:12px;opacity:.85;line-height:1.5}
+.f-green{background:#e6f4ea;color:#1e6e3c}
+.f-yellow{background:#fef3e2;color:#b45309}
+.f-orange{background:#fff3e0;color:#e65100}
+.f-red{background:#fce8e8;color:#c0392b}
+.divider{border:none;border-top:1px solid #e5e5ea;margin:4px 0 16px}
+</style></head><body>
 
 <h1>✈️ De-ice Fuel</h1>
 
@@ -18,20 +76,6 @@
 </div>
 
 <div class="card">
-  <div class="lbl">On board</div>
-  <div class="fl">Quantity</div>
-  <div class="fr"><input type="number" id="mb" value="5000" inputmode="decimal"><span class="unit">kg</span></div>
-  <div class="fl">Temperature</div>
-  <div class="fr"><input type="number" id="tb" value="-5" inputmode="decimal"><span class="unit">°C</span><button class="sgn" onclick="tog('tb')">±</button></div>
-</div>
-
-<div class="card">
-  <div class="lbl">New fuel</div>
-  <div class="fl">Temperature of new fuel</div>
-  <div class="fr"><input type="number" id="tn" value="20" inputmode="decimal"><span class="unit">°C</span><button class="sgn" onclick="tog('tn')">±</button></div>
-</div>
-
-<div class="card">
   <div class="lbl">Airport weather</div>
   <div class="fl">ICAO or IATA code</div>
   <div class="fr">
@@ -42,27 +86,26 @@
 </div>
 
 <div class="card">
-  <div class="lbl-row">
-    <span class="lbl" style="margin-bottom:0">Minimum final temperature</span>
-    <span class="badge badge-manual" id="target_badge">manual</span>
-  </div>
-  <div class="fl">Target temperature</div>
-  <div class="fr">
-    <input type="number" id="tt" value="5" inputmode="decimal" class="target-manual">
-    <span class="unit">°C</span>
-    <button class="sgn" onclick="tog('tt');setManualTarget()">±</button>
-  </div>
-  <div class="target-hint" id="target_hint">Set manually or fetch airport weather to auto-calculate</div>
+  <div class="lbl">Fuel on board</div>
+  <div class="fl">Quantity</div>
+  <div class="fr"><input type="number" id="mb" value="5000" inputmode="decimal"><span class="unit">kg</span></div>
+  <div class="fl">Temperature (= wing surface temp)</div>
+  <div class="fr"><input type="number" id="tb" value="-5" inputmode="decimal"><span class="unit">°C</span><button class="sgn" onclick="tog('tb')">±</button></div>
 </div>
 
-<button class="calc" onclick="c()">Calculate</button>
+<div class="card">
+  <div class="lbl">New fuel to upload</div>
+  <div class="fl">Temperature</div>
+  <div class="fr"><input type="number" id="tn" value="15" inputmode="decimal"><span class="unit">°C</span><button class="sgn" onclick="tog('tn')">±</button></div>
+</div>
+
+<button class="calc" onclick="c()">Assess &amp; Calculate</button>
 <div id="o"></div>
 
 <script>
 var acType='320';
 var INNER_CAP={'320':11000,'321':12000};
 var wxOAT=null,wxDP=null,wxStation='';
-var isAutoTarget=false;
 
 function setAcType(t){
   acType=t;
@@ -74,34 +117,38 @@ function tog(id){var el=document.getElementById(id),v=parseFloat(el.value);if(!i
 function dewFromRH(T,RH){var a=17.625,b=243.04,g=Math.log(RH/100)+a*T/(b+T);return b*g/(a-g);}
 function frostPoint(dp){if(dp>=0)return 0;return dp+1+(Math.abs(dp)*0.02);}
 
-function computeAutoTarget(oat,dp){
+function riskLevel(tf,dp){
+  if(tf===null||dp===null)return null;
+  var fp=frostPoint(dp),margin=tf-fp;
+  if(tf>0&&(tf-dp)>3)return 'green';
+  if(tf>0)return 'yellow';
+  if(margin>3)return 'yellow';
+  if(margin>0)return 'orange';
+  return 'red';
+}
+
+function frostBox(tf,oat,dp,label){
+  var fp=frostPoint(dp),spread=oat-dp,margin=tf-fp;
+  var cls,dot,main,sub;
+  if(tf>0){
+    if(spread>3){cls='f-green';dot='#1e6e3c';main='No frost risk';sub='Wing '+tf.toFixed(1)+'°C above 0°C, spread '+spread.toFixed(1)+'°C — no ice formation possible';}
+    else{cls='f-yellow';dot='#b45309';main='Condensation only — no ice';sub='Wing '+tf.toFixed(1)+'°C above 0°C — liquid water only. Spread '+spread.toFixed(1)+'°C';}
+  } else if(margin>3){
+    cls='f-yellow';dot='#b45309';main='Wing below 0°C — humidity low enough';sub='Wing '+tf.toFixed(1)+'°C is '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). Frost unlikely. Spread '+spread.toFixed(1)+'°C';
+  } else if(margin>0){
+    cls='f-orange';dot='#e65100';main='Marginal — frost probable';sub='Wing '+tf.toFixed(1)+'°C only '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). T-shape likely. Spread '+spread.toFixed(1)+'°C';
+  } else {
+    cls='f-red';dot='#c0392b';main='High — T-shape frost expected';sub='Wing '+tf.toFixed(1)+'°C at/below frost point ('+fp.toFixed(1)+'°C). Active frost formation. De-ice required. Spread '+spread.toFixed(1)+'°C';
+  }
+  return '<div class="frost-box '+cls+'"><div class="frost-title">'+(label||'Frost risk')+'</div><div class="frost-row"><div class="frost-dot" style="background:'+dot+'"></div><div><div class="frost-main">'+main+'</div><div class="frost-sub">'+sub+'</div></div></div></div>';
+}
+
+function autoTarget(oat,dp){
   var fp=frostPoint(dp),spread=oat-dp;
-  if(oat>15||spread>10)return{T:0,reason:'No frost risk (OAT '+oat.toFixed(1)+'°C, spread '+spread.toFixed(1)+'°C) — minimum load.'};
+  if(oat>15||spread>10)return{T:0,reason:'No frost risk — minimum load'};
   var t=Math.round(Math.max(fp+3,1)*10)/10;
-  return{T:t,reason:'Frost point '+fp.toFixed(1)+'°C + 3°C FAA safety margin (spread '+spread.toFixed(1)+'°C).'};
+  return{T:t,reason:'Frost point '+fp.toFixed(1)+'°C + 3°C FAA margin'};
 }
-
-function setAutoTarget(T,reason){
-  isAutoTarget=true;
-  var inp=document.getElementById('tt');
-  inp.value=T.toFixed(1);
-  inp.className='target-auto';
-  var badge=document.getElementById('target_badge');
-  badge.textContent='auto';
-  badge.className='badge badge-auto';
-  document.getElementById('target_hint').textContent=reason;
-}
-
-function setManualTarget(){
-  isAutoTarget=false;
-  var inp=document.getElementById('tt');
-  inp.className='target-manual';
-  var badge=document.getElementById('target_badge');
-  badge.textContent='manual';
-  badge.className='badge badge-manual';
-  document.getElementById('target_hint').textContent='Manual override — auto disabled';
-}
-document.getElementById('tt').addEventListener('input',function(){setManualTarget();});
 
 function lookupAirport(raw){
   if(!raw||raw.length<3)return null;
@@ -123,64 +170,114 @@ function fetchWeather(){
       var T=d.current.temperature_2m,RH=d.current.relative_humidity_2m,dp=dewFromRH(T,RH);
       wxOAT=T;wxDP=dp;wxStation=ap.data[2];
       info.textContent=ap.data[2]+': OAT '+T.toFixed(1)+'°C  |  RH '+RH+'%  |  DP '+dp.toFixed(1)+'°C  |  Spread '+(T-dp).toFixed(1)+'°C';
-      var at=computeAutoTarget(T,dp);
-      setAutoTarget(at.T,at.reason);
     })
     .catch(function(){info.textContent='Error fetching weather — check connection';});
 }
 document.getElementById('airport').addEventListener('keydown',function(e){if(e.key==='Enter')fetchWeather();});
 
-function frostScore(tf,oat,dp){
-  var fp=frostPoint(dp),spread=oat-dp,margin=tf-fp;
-  if(tf>0){
-    if(spread>3)return '<div class="frost-box f-green"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#1e6e3c"></div><div><div class="frost-main">No frost — wing above 0°C</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C — condensation possible but no ice. OAT '+oat.toFixed(1)+'°C / DP '+dp.toFixed(1)+'°C / Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
-    return '<div class="frost-box f-yellow"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#b45309"></div><div><div class="frost-main">Condensation only — no ice</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C above 0°C — liquid water only. Monitor if OAT drops. Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
-  }
-  if(margin>3)return '<div class="frost-box f-yellow"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#b45309"></div><div><div class="frost-main">Wing below 0°C — humidity low enough</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C is '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). Frost unlikely. Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
-  if(margin>0)return '<div class="frost-box f-orange"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#e65100"></div><div><div class="frost-main">Marginal — frost probable</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C only '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). T-shape likely. Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
-  return '<div class="frost-box f-red"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#c0392b"></div><div><div class="frost-main">High — T-shape frost expected</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C at/below frost point ('+fp.toFixed(1)+'°C). Active frost. De-ice required. Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
-}
-
 function c(){
-  var mb=parseFloat(document.getElementById('mb').value),tb=parseFloat(document.getElementById('tb').value),tn=parseFloat(document.getElementById('tn').value),T=parseFloat(document.getElementById('tt').value),o=document.getElementById('o');
-  if([mb,tb,tn,T].some(isNaN)){o.innerHTML='<div class="res err"><div class="rl">Error</div><div style="font-size:17px;font-weight:600">Fill in all fields</div></div>';return;}
-  var cap=INNER_CAP[acType],acLabel=acType==='320'?'A319/A320 (inner cap: 11,000 kg)':'A321 (wing cap: 12,000 kg)';
-  var targetLabel=isAutoTarget?'Auto (METAR)':'Manual';
+  var mb=parseFloat(document.getElementById('mb').value),
+      tb=parseFloat(document.getElementById('tb').value),
+      tn=parseFloat(document.getElementById('tn').value),
+      o=document.getElementById('o');
 
-  if(tb>=T){
-    var fs=wxOAT!==null?frostScore(tb,wxOAT,wxDP):'';
-    o.innerHTML=fs+'<div class="res ok"><div class="rl">Total in tank</div><div class="rv">'+mb.toLocaleString('en-US')+' kg</div><div class="rs">Already at '+tb.toFixed(1)+'°C ≥ target '+T.toFixed(1)+'°C — no extra fuel needed</div></div>';
+  if([mb,tb,tn].some(isNaN)){o.innerHTML='<div class="res err"><div class="rl">Error</div><div style="font-size:17px;font-weight:600">Fill in all fields</div></div>';return;}
+
+  var cap=INNER_CAP[acType];
+  var acLabel=acType==='320'?'A319/A320':'A321';
+  var html='';
+
+  // --- SECTION 1: CURRENT ASSESSMENT ---
+  html+='<div class="section-head">Current status</div>';
+
+  if(wxOAT!==null){
+    html+=frostBox(tb,wxOAT,wxDP,'Current frost risk — '+mb.toLocaleString('en-US')+' kg @ '+tb.toFixed(1)+'°C');
+  } else {
+    html+='<div class="res info"><div class="rl">No weather data</div><div class="rs">Fetch airport METAR above to enable frost risk assessment</div></div>';
+  }
+
+  var risk=wxOAT!==null?riskLevel(tb,wxDP):null;
+
+  // --- SECTION 2: ACTION ---
+  if(risk==='green'){
+    html+='<div class="section-head">Action</div>';
+    html+='<div class="res ok"><div class="rl">No action needed</div><div class="rv">No uplift required</div><div class="rs">Current fuel temp is safe — no frost risk with present conditions</div></div>';
+    o.innerHTML=html;
     return;
   }
-  if(tn<=T){o.innerHTML='<div class="res err"><div class="rl">Impossible</div><div style="font-size:17px;font-weight:600">New fuel at '+tn.toFixed(1)+'°C</div><div class="rs">New fuel must be warmer than '+T.toFixed(1)+'°C</div></div>';return;}
 
-  var mn_exact=mb*cp(tb)*(T-tb)/(cp(tn)*(tn-T)),mn=Math.ceil(mn_exact),tot=mb+mn,tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn)),mn_simple=Math.ceil(mb*(T-tb)/(tn-T)),saving=mn_simple-mn,cl=mn>mb*3?'warn':'info',capWarning='';
+  html+='<div class="section-head">Recommended uplift</div>';
 
-  if(tot>cap){
-    var effMn=Math.max(0,cap-mb),effTot=mb+effMn,tf_cap=effMn>0?(mb*cp(tb)*tb+effMn*cp(tn)*tn)/(mb*cp(tb)+effMn*cp(tn)):tb;
-    if(tf_cap>=T){capWarning='<div class="res cap"><div class="rl">Inner tank cap reached</div><div style="font-size:15px;font-weight:600">'+effMn.toLocaleString('en-US')+' kg reaches '+tf_cap.toFixed(1)+'°C</div><div class="rs">No benefit beyond '+cap.toLocaleString('en-US')+' kg ('+acLabel+')</div></div>';mn=effMn;tot=effTot;tf=tf_cap;cl='ok';}
-    else{capWarning='<div class="res cap"><div class="rl">Inner tank cap limiting</div><div style="font-size:15px;font-weight:600">Max: '+(cap-mb).toLocaleString('en-US')+' kg → '+tf_cap.toFixed(1)+'°C</div><div class="rs">Target not reachable via fuel. Consider de-icing.</div></div>';mn=cap-mb;tot=cap;tf=tf_cap;cl='warn';}
+  // Determine target
+  var T,targetReason;
+  if(wxOAT!==null){
+    var at=autoTarget(wxOAT,wxDP);
+    T=at.T; targetReason=at.reason;
+  } else {
+    T=5; targetReason='Default target (no METAR)';
   }
 
-  var frostHtml=wxOAT!==null?frostScore(tf,wxOAT,wxDP):'';
-  o.innerHTML=frostHtml+capWarning
-  +'<div class="res '+cl+'"><div class="rl">Minimum total in tank</div><div class="rv">'+tot.toLocaleString('en-US')+' kg</div><div class="rs">Final temp: '+tf.toFixed(1)+'°C (target ≥ '+T.toFixed(1)+'°C · '+targetLabel+')</div></div>'
-  +'<div class="det"><table>'
+  if(tb>=T){
+    html+='<div class="res ok"><div class="rl">Fuel temp already at target</div><div class="rv">'+mb.toLocaleString('en-US')+' kg</div><div class="rs">Wing at '+tb.toFixed(1)+'°C ≥ target '+T.toFixed(1)+'°C ('+targetReason+')</div></div>';
+    o.innerHTML=html;
+    return;
+  }
+
+  if(tn<=T){
+    html+='<div class="res err"><div class="rl">Impossible</div><div style="font-size:17px;font-weight:600">New fuel at '+tn.toFixed(1)+'°C</div><div class="rs">New fuel must be warmer than target '+T.toFixed(1)+'°C. Consider de-icing instead.</div></div>';
+    o.innerHTML=html;
+    return;
+  }
+
+  var mn_exact=mb*cp(tb)*(T-tb)/(cp(tn)*(tn-T));
+  var mn=Math.ceil(mn_exact);
+  var tot=mb+mn;
+  var tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn));
+  var mn_simple=Math.ceil(mb*(T-tb)/(tn-T));
+  var saving=mn_simple-mn;
+  var cl='info';
+  var capWarning='';
+
+  if(tot>cap){
+    var effMn=Math.max(0,cap-mb),effTot=mb+effMn;
+    var tf_cap=effMn>0?(mb*cp(tb)*tb+effMn*cp(tn)*tn)/(mb*cp(tb)+effMn*cp(tn)):tb;
+    if(tf_cap>=T){
+      capWarning='<div class="res cap"><div class="rl">Inner tank cap reached</div><div style="font-size:15px;font-weight:600">'+effMn.toLocaleString('en-US')+' kg is sufficient</div><div class="rs">No benefit loading beyond '+cap.toLocaleString('en-US')+' kg ('+acLabel+' cap '+Math.round(cap/2).toLocaleString('en-US')+' kg/wing)</div></div>';
+      mn=effMn;tot=effTot;tf=tf_cap;cl='ok';
+    } else {
+      capWarning='<div class="res cap"><div class="rl">Inner tank cap limiting</div><div style="font-size:15px;font-weight:600">Max useful: '+(cap-mb).toLocaleString('en-US')+' kg → '+tf_cap.toFixed(1)+'°C</div><div class="rs">Target '+T.toFixed(1)+'°C not reachable via fuel alone. Consider de-icing.</div></div>';
+      mn=cap-mb;tot=cap;tf=tf_cap;cl='warn';
+    }
+  }
+
+  html+=capWarning;
+  html+='<div class="res '+cl+'"><div class="rl">Upload to reach target</div><div class="rv">+'+mn.toLocaleString('en-US')+' kg</div><div class="rs">Total in tank: '+tot.toLocaleString('en-US')+' kg → wing temp '+tf.toFixed(1)+'°C (target ≥ '+T.toFixed(1)+'°C)</div></div>';
+
+  // Post-uplift frost assessment
+  if(wxOAT!==null){
+    html+='<div class="section-head">After uplift</div>';
+    html+=frostBox(tf,wxOAT,wxDP,'Frost risk after uplift');
+  }
+
+  // Detail table
+  html+='<div class="det" style="margin-top:4px"><table>'
   +'<tr><td>On board</td><td>'+mb.toLocaleString('en-US')+' kg @ '+tb.toFixed(1)+'°C</td></tr>'
-  +'<tr><td>To upload (min)</td><td>'+mn.toLocaleString('en-US')+' kg @ '+tn.toFixed(1)+'°C</td></tr>'
-  +'<tr class="sep"><td>Total</td><td>'+tot.toLocaleString('en-US')+' kg</td></tr>'
-  +'<tr><td>Inner tank cap</td><td>'+cap.toLocaleString('en-US')+' kg</td></tr>'
+  +'<tr><td>To upload</td><td>'+mn.toLocaleString('en-US')+' kg @ '+tn.toFixed(1)+'°C</td></tr>'
+  +'<tr class="sep"><td>Total in tank</td><td>'+tot.toLocaleString('en-US')+' kg</td></tr>'
+  +'<tr><td>Inner tank cap ('+acLabel+')</td><td>'+cap.toLocaleString('en-US')+' kg</td></tr>'
   +'<tr><td>Final wing temp</td><td>'+tf.toFixed(1)+'°C</td></tr>'
+  +'<tr><td>Target</td><td>'+T.toFixed(1)+'°C ('+targetReason+')</td></tr>'
   +(wxOAT!==null
     ?'<tr class="sep"><td>OAT ('+wxStation+')</td><td>'+wxOAT.toFixed(1)+'°C</td></tr>'
     +'<tr><td>Dew point</td><td>'+wxDP.toFixed(1)+'°C</td></tr>'
     +'<tr><td>Frost point</td><td>'+frostPoint(wxDP).toFixed(1)+'°C</td></tr>'
-    +'<tr><td>Wing margin to frost pt</td><td>'+(tf-frostPoint(wxDP)).toFixed(1)+'°C</td></tr>'
-    +'<tr><td>Target mode</td><td>'+targetLabel+'</td></tr>'
+    +'<tr><td>Margin after uplift</td><td>'+(tf-frostPoint(wxDP)).toFixed(1)+'°C</td></tr>'
     :'')
   +'<tr class="sep"><td>cp on board</td><td>'+cp(tb).toFixed(4)+' kJ/(kg·K)</td></tr>'
   +'<tr><td>cp new fuel</td><td>'+cp(tn).toFixed(4)+' kJ/(kg·K)</td></tr>'
   +'<tr><td>vs simple model</td><td>'+(saving>=0?'-':'+')+(Math.abs(saving)).toLocaleString('en-US')+' kg</td></tr>'
-  +'</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost criteria: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
+  +'</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
+
+  o.innerHTML=html;
 }
 </script></body></html>
