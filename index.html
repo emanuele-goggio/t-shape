@@ -9,17 +9,12 @@ h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:8px}
 .disclaimer-body{font-size:11px;color:#7b1f1f;line-height:1.5}
 .card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}
 .lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}
-.lbl-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;line-height:1.4}
-.badge-auto{background:#007aff;color:#fff}
-.badge-manual{background:#e0e0e5;color:#48484a}
 .fl{font-size:13px;color:#8e8e93;margin-bottom:3px}
 .fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .fr:last-child{margin-bottom:0}
 .fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1.5px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}
 .fr input:focus{outline:none;border-color:#007aff}
 .fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}
-.fr input.new-fuel{border-color:#e0e0e5}
 .unit{font-size:15px;color:#8e8e93;min-width:28px}
 .sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .sgn:active{background:#bdd4f8}
@@ -32,14 +27,13 @@ h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:8px}
 .hint{font-size:11px;color:#8e8e93;margin-top:6px;line-height:1.4}
 button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}
 button.calc:active{background:#0062cc}
-.section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
 .res{border-radius:14px;padding:16px;margin-bottom:12px}
 .rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
 .rv{font-size:38px;font-weight:700;line-height:1.1}
 .rs{font-size:13px;margin-top:5px;opacity:.85}
-.info{background:#e8f0fe;color:#1a56db}
 .ok{background:#e6f4ea;color:#1e6e3c}
 .warn{background:#fef3e2;color:#b45309}
+.info{background:#e8f0fe;color:#1a56db}
 .err{background:#fce8e8;color:#c0392b}
 .cap{background:#fff3e0;color:#e65100}
 .det{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}
@@ -50,7 +44,7 @@ td:last-child{text-align:right;font-weight:500;color:#1c1c1e}
 td:first-child{color:#8e8e93}
 .sep td{border-top:1px solid #e5e5ea;padding-top:9px}
 .frost-box{border-radius:14px;padding:16px;margin-bottom:12px}
-.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
 .frost-row{display:flex;align-items:flex-start;gap:10px}
 .frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}
 .frost-main{font-size:15px;font-weight:600;margin-bottom:3px}
@@ -59,7 +53,7 @@ td:first-child{color:#8e8e93}
 .f-yellow{background:#fef3e2;color:#b45309}
 .f-orange{background:#fff3e0;color:#e65100}
 .f-red{background:#fce8e8;color:#c0392b}
-.divider{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8e8e93;margin:4px 0 12px;display:flex;align-items:center;gap:8px}
+.divider{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8e8e93;margin:4px 0 14px;display:flex;align-items:center;gap:8px}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:#e5e5ea}
 </style></head><body>
 
@@ -99,8 +93,8 @@ td:first-child{color:#8e8e93}
 <div class="card">
   <div class="lbl">Step 3 — New fuel available</div>
   <div class="fl">Temperature of new fuel</div>
-  <div class="fr"><input type="number" id="tn" value="15" inputmode="decimal" class="new-fuel"><span class="unit">°C</span><button class="sgn" onclick="tog('tn')">±</button></div>
-  <div class="hint">Used only if upload is needed</div>
+  <div class="fr"><input type="number" id="tn" value="15" inputmode="decimal"><span class="unit">°C</span><button class="sgn" onclick="tog('tn')">±</button></div>
+  <div class="hint">Used only if upload is recommended</div>
 </div>
 
 <button class="calc" onclick="c()">Assess &amp; Calculate</button>
@@ -121,28 +115,61 @@ function tog(id){var el=document.getElementById(id),v=parseFloat(el.value);if(!i
 function dewFromRH(T,RH){var a=17.625,b=243.04,g=Math.log(RH/100)+a*T/(b+T);return b*g/(a-g);}
 function frostPoint(dp){if(dp>=0)return 0;return dp+1+(Math.abs(dp)*0.02);}
 
+// Returns 0=green, 1=yellow, 2=orange, 3=red
 function frostRisk(tf,dp){
-  var fp=frostPoint(dp),margin=tf-fp;
-  if(tf>0&&(wxOAT-dp)>3)return 0; // green - no risk
-  if(tf>0)return 1;                // yellow - condensation only
-  if(margin>3)return 1;            // yellow - cold but dry
-  if(margin>0)return 2;            // orange - marginal
-  return 3;                        // red - frost certain
+  var fp=frostPoint(dp),margin=tf-fp,spread=wxOAT-dp;
+  if(tf>0&&spread>3)return 0;   // above 0°C and air dry enough
+  if(tf>0)return 1;              // above 0°C but humid — condensation only, no ice
+  if(margin>3)return 1;          // below 0°C but well above frost point — dry air
+  if(margin>0)return 2;          // below 0°C, within 3°C of frost point — marginal
+  return 3;                      // at or below frost point — active frost
 }
 
-function frostScoreHtml(tf,oat,dp,label){
-  var fp=frostPoint(dp),spread=oat-dp,margin=tf-fp,risk=frostRisk(tf,dp);
+function frostBoxHtml(tf,oat,dp,title){
+  var fp=frostPoint(dp),spread=oat-dp,margin=tf-fp;
+  var risk=frostRisk(tf,dp);
   var cls=['f-green','f-yellow','f-orange','f-red'][risk];
   var dot=['#1e6e3c','#b45309','#e65100','#c0392b'][risk];
-  var title=label||'Frost risk';
-  var main=['No frost — wing above 0°C and spread ok','Condensation only — no ice','Marginal — frost probable','High — T-shape frost expected'][risk];
+  var main=[
+    'No frost — wing above 0°C, air dry',
+    tf>0?'Condensation only — no ice':'Wing below 0°C — humidity low enough',
+    'Marginal — frost probable',
+    'High — T-shape frost expected'
+  ][risk];
   var sub;
-  if(tf>0&&spread>3)sub='Wing '+tf.toFixed(1)+'°C — no ice risk. OAT '+oat.toFixed(1)+'°C / DP '+dp.toFixed(1)+'°C / Spread '+spread.toFixed(1)+'°C';
-  else if(tf>0)sub='Wing '+tf.toFixed(1)+'°C above 0°C — liquid condensation only. Spread '+spread.toFixed(1)+'°C';
-  else if(margin>3)sub='Wing '+tf.toFixed(1)+'°C is '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). Spread '+spread.toFixed(1)+'°C';
-  else if(margin>0)sub='Wing '+tf.toFixed(1)+'°C only '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). T-shape likely. Spread '+spread.toFixed(1)+'°C';
-  else sub='Wing '+tf.toFixed(1)+'°C at/below frost point ('+fp.toFixed(1)+'°C). Active frost formation. De-ice required. Spread '+spread.toFixed(1)+'°C';
-  return '<div class="frost-box '+cls+'"><div class="frost-title">'+title+'</div><div class="frost-row"><div class="frost-dot" style="background:'+dot+'"></div><div><div class="frost-main">'+main+'</div><div class="frost-sub">'+sub+'</div></div></div></div>';
+  if(risk===0)sub='Wing '+tf.toFixed(1)+'°C — no ice risk. OAT '+oat.toFixed(1)+'°C / DP '+dp.toFixed(1)+'°C / Spread '+spread.toFixed(1)+'°C';
+  else if(risk===1&&tf>0)sub='Wing '+tf.toFixed(1)+'°C above 0°C — liquid water only, no freezing. Spread '+spread.toFixed(1)+'°C';
+  else if(risk===1)sub='Wing '+tf.toFixed(1)+'°C below 0°C but '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). Spread '+spread.toFixed(1)+'°C';
+  else if(risk===2)sub='Wing '+tf.toFixed(1)+'°C only '+margin.toFixed(1)+'°C above frost point ('+fp.toFixed(1)+'°C). T-shape formation likely. Spread '+spread.toFixed(1)+'°C';
+  else sub='Wing '+tf.toFixed(1)+'°C at/below frost point ('+fp.toFixed(1)+'°C). Active frost. De-ice required. Spread '+spread.toFixed(1)+'°C';
+  return '<div class="frost-box '+cls+'"><div class="frost-title">'+(title||'Frost risk')+'</div><div class="frost-row"><div class="frost-dot" style="background:'+dot+'"></div><div><div class="frost-main">'+main+'</div><div class="frost-sub">'+sub+'</div></div></div></div>';
+}
+
+function detailTable(mb,tb,mn,tn,tf,T_needed,cap,acType,saving){
+  var capStr=cap.toLocaleString('en-US')+' kg ('+(acType==='320'?'A319/A320':'A321')+', both wings)';
+  var html='<div class="det"><table>';
+  html+='<tr><td>On board</td><td>'+mb.toLocaleString('en-US')+' kg @ '+tb.toFixed(1)+'°C</td></tr>';
+  if(mn!=null&&mn>0){
+    html+='<tr><td>To upload (min)</td><td>'+mn.toLocaleString('en-US')+' kg @ '+tn.toFixed(1)+'°C</td></tr>';
+    html+='<tr class="sep"><td>Total in tank</td><td>'+(mb+mn).toLocaleString('en-US')+' kg</td></tr>';
+    if(tf!=null)html+='<tr><td>Final wing temp</td><td>'+tf.toFixed(1)+'°C</td></tr>';
+  }
+  if(T_needed!=null)html+='<tr><td>Target temp (auto)</td><td>'+T_needed.toFixed(1)+'°C</td></tr>';
+  html+='<tr><td>Inner tank cap</td><td>'+capStr+'</td></tr>';
+  if(wxOAT!==null){
+    var fp=frostPoint(wxDP);
+    html+='<tr class="sep"><td>OAT ('+wxStation+')</td><td>'+wxOAT.toFixed(1)+'°C</td></tr>';
+    html+='<tr><td>Dew point</td><td>'+wxDP.toFixed(1)+'°C</td></tr>';
+    html+='<tr><td>Frost point</td><td>'+fp.toFixed(1)+'°C</td></tr>';
+    if(tf!=null)html+='<tr><td>Wing margin to frost pt</td><td>'+(tf-fp).toFixed(1)+'°C</td></tr>';
+  }
+  if(mn!=null&&mn>0&&saving!=null){
+    html+='<tr class="sep"><td>cp on board</td><td>'+cp(tb).toFixed(4)+' kJ/(kg·K)</td></tr>';
+    html+='<tr><td>cp new fuel</td><td>'+cp(tn).toFixed(4)+' kJ/(kg·K)</td></tr>';
+    html+='<tr><td>vs simple model</td><td>'+(saving>=0?'−':'+')+Math.abs(saving).toLocaleString('en-US')+' kg</td></tr>';
+  }
+  html+='</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost criteria: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
+  return html;
 }
 
 function lookupAirport(raw){
@@ -176,114 +203,97 @@ function c(){
       tn=parseFloat(document.getElementById('tn').value),
       o=document.getElementById('o');
 
-  if([mb,tb,tn].some(isNaN)){o.innerHTML='<div class="res err"><div class="rl">Error</div><div style="font-size:17px;font-weight:600">Fill in all fields</div></div>';return;}
+  if([mb,tb,tn].some(isNaN)){
+    o.innerHTML='<div class="res err"><div class="rl">Error</div><div style="font-size:17px;font-weight:600">Fill in all fields</div></div>';
+    return;
+  }
 
   var cap=INNER_CAP[acType];
-  var acLabel=acType==='320'?'A319/A320 (inner cap: 11,000 kg)':'A321 (wing cap: 12,000 kg)';
   var out='';
 
-  // --- CURRENT ASSESSMENT ---
-  out+='<div class="divider">Current state</div>';
-
-  if(wxOAT!==null){
-    var currentRisk=frostRisk(tb,wxDP);
-    out+=frostScoreHtml(tb,wxOAT,wxDP,'Current frost risk — fuel at '+tb.toFixed(1)+'°C');
-
-    if(currentRisk<=1){
-      // Green or yellow — no action needed
-      out+='<div class="res ok"><div class="rl">Assessment</div><div style="font-size:17px;font-weight:600;margin-bottom:4px">No upload needed for frost prevention</div><div class="rs">Current fuel temp ('+tb.toFixed(1)+'°C) is sufficient for current conditions at '+wxStation+'</div></div>';
-      out+=detailTable(mb,tb,null,null,null,cap,acLabel);
-      o.innerHTML=out;return;
-    }
-
-    // Amber or red — calculate minimum upload
-    out+='<div class="divider">Recommended action</div>';
-
-    var fp=frostPoint(wxDP);
-    var T_needed=Math.round(Math.max(fp+3,1)*10)/10;
-
-    if(tb>=T_needed){
-      out+='<div class="res ok"><div class="rl">Upload needed</div><div style="font-size:17px;font-weight:600;margin-bottom:4px">No upload needed</div><div class="rs">Fuel already at '+tb.toFixed(1)+'°C ≥ recommended target '+T_needed.toFixed(1)+'°C</div></div>';
-      out+=detailTable(mb,tb,null,null,T_needed,cap,acLabel);
-      o.innerHTML=out;return;
-    }
-
-    if(tn<=T_needed){
-      out+='<div class="res err"><div class="rl">Cannot resolve via fuel</div><div style="font-size:17px;font-weight:600;margin-bottom:4px">New fuel at '+tn.toFixed(1)+'°C — too cold</div><div class="rs">New fuel must be warmer than '+T_needed.toFixed(1)+'°C to reach target. De-icing recommended.</div></div>';
-      o.innerHTML=out;return;
-    }
-
-    var mn_exact=mb*cp(tb)*(T_needed-tb)/(cp(tn)*(tn-T_needed));
-    var mn=Math.ceil(mn_exact);
-    var tot=mb+mn;
-    var tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn));
-    var mn_simple=Math.ceil(mb*(T_needed-tb)/(tn-T_needed));
-    var saving=mn_simple-mn;
-    var cl='info';
-    var capWarning='';
-
-    if(tot>cap){
-      var effMn=Math.max(0,cap-mb),effTot=mb+effMn;
-      var tf_cap=effMn>0?(mb*cp(tb)*tb+effMn*cp(tn)*tn)/(mb*cp(tb)+effMn*cp(tn)):tb;
-      if(tf_cap>=T_needed){
-        capWarning='<div class="res cap"><div class="rl">Inner tank cap reached</div><div style="font-size:15px;font-weight:600">'+effMn.toLocaleString('en-US')+' kg reaches '+tf_cap.toFixed(1)+'°C</div><div class="rs">No benefit beyond '+cap.toLocaleString('en-US')+' kg ('+acLabel+')</div></div>';
-        mn=effMn;tot=effTot;tf=tf_cap;cl='ok';
-      } else {
-        capWarning='<div class="res cap"><div class="rl">Inner tank cap limiting</div><div style="font-size:15px;font-weight:600">Max: '+(cap-mb).toLocaleString('en-US')+' kg → '+tf_cap.toFixed(1)+'°C</div><div class="rs">Target '+T_needed.toFixed(1)+'°C not reachable via fuel. De-icing recommended.</div></div>';
-        mn=cap-mb;tot=cap;tf=tf_cap;cl='warn';
-      }
-    }
-
-    // Post-upload frost assessment
-    var postRisk=frostRisk(tf,wxDP);
-    out+=frostScoreHtml(tf,wxOAT,wxDP,'After upload — fuel at '+tf.toFixed(1)+'°C');
-    out+=capWarning;
-    out+='<div class="res '+cl+'"><div class="rl">Upload to reach low risk</div><div class="rv">'+mn.toLocaleString('en-US')+' kg</div><div class="rs">Target '+T_needed.toFixed(1)+'°C (frost point '+frostPoint(wxDP).toFixed(1)+'°C + 3°C) · New fuel @ '+tn.toFixed(1)+'°C</div></div>';
-    out+=detailTable(mb,tb,mn,tn,T_needed,cap,acLabel,tf,saving,wxOAT,wxDP);
-
-  } else {
-    // No METAR — show basic calc with manual target 5°C
-    var T_needed=5;
-    out+='<div class="res warn"><div class="rl">No weather data</div><div style="font-size:15px;font-weight:600;margin-bottom:4px">Fetch airport weather for frost risk assessment</div><div class="rs">Showing fuel calc with default target '+T_needed+'°C</div></div>';
-    if(tb>=T_needed){
-      out+='<div class="res ok"><div class="rl">Current fuel</div><div class="rv">'+mb.toLocaleString('en-US')+' kg</div><div class="rs">Already at '+tb.toFixed(1)+'°C ≥ '+T_needed+'°C — no upload needed</div></div>';
-    } else if(tn>T_needed){
-      var mn_exact=mb*cp(tb)*(T_needed-tb)/(cp(tn)*(tn-T_needed));
-      var mn=Math.ceil(mn_exact),tot=mb+mn;
-      var tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn));
-      out+='<div class="res info"><div class="rl">Upload needed (default 5°C target)</div><div class="rv">'+mn.toLocaleString('en-US')+' kg</div><div class="rs">Total in tank: '+tot.toLocaleString('en-US')+' kg · Final temp: '+tf.toFixed(1)+'°C</div></div>';
+  // ── NO METAR FALLBACK ──
+  if(wxOAT===null){
+    var T_fb=5;
+    out+='<div class="res warn"><div class="rl">No weather data</div><div style="font-size:15px;font-weight:600;margin-bottom:4px">Fetch airport weather for frost risk scoring</div><div class="rs">Showing fuel calculation with default target '+T_fb+'°C</div></div>';
+    if(tb>=T_fb){
+      out+='<div class="res ok"><div class="rl">Current fuel</div><div class="rv">'+mb.toLocaleString('en-US')+' kg</div><div class="rs">Already at '+tb.toFixed(1)+'°C ≥ '+T_fb+'°C — no upload needed</div></div>';
+    } else if(tn>T_fb){
+      var mn0=Math.ceil(mb*cp(tb)*(T_fb-tb)/(cp(tn)*(tn-T_fb)));
+      var tf0=(mb*cp(tb)*tb+mn0*cp(tn)*tn)/(mb*cp(tb)+mn0*cp(tn));
+      out+='<div class="res info"><div class="rl">Upload needed</div><div class="rv">'+mn0.toLocaleString('en-US')+' kg</div><div class="rs">Total: '+(mb+mn0).toLocaleString('en-US')+' kg · Final temp: '+tf0.toFixed(1)+'°C · New fuel @ '+tn.toFixed(1)+'°C</div></div>';
     } else {
-      out+='<div class="res err"><div class="rl">Impossible</div><div style="font-size:15px;font-weight:600">New fuel at '+tn.toFixed(1)+'°C — too cold</div><div class="rs">New fuel must be warmer than '+T_needed+'°C</div></div>';
+      out+='<div class="res err"><div class="rl">Impossible</div><div style="font-size:15px;font-weight:600">New fuel ('+tn.toFixed(1)+'°C) too cold</div><div class="rs">Must be warmer than '+T_fb+'°C. Consider de-icing.</div></div>';
+    }
+    o.innerHTML=out;
+    return;
+  }
+
+  // ── WITH METAR ──
+  var currentRisk=frostRisk(tb,wxDP);
+
+  out+='<div class="divider">Current state</div>';
+  out+=frostBoxHtml(tb,wxOAT,wxDP,'Current frost risk — fuel at '+tb.toFixed(1)+'°C');
+
+  // Green or yellow → no upload needed
+  if(currentRisk<=1){
+    out+='<div class="res ok"><div class="rl">Assessment</div><div style="font-size:17px;font-weight:600;margin-bottom:4px">No upload needed</div><div class="rs">Current fuel temp ('+tb.toFixed(1)+'°C) is sufficient for conditions at '+wxStation+'</div></div>';
+    out+=detailTable(mb,tb,null,null,null,null,cap,acType,null);
+    o.innerHTML=out;
+    return;
+  }
+
+  // Orange or red → calculate upload
+  out+='<div class="divider">Recommended action</div>';
+
+  var fp=frostPoint(wxDP);
+  var T_needed=Math.round(Math.max(fp+3,1)*10)/10;
+
+  // Edge case: fuel already at or above needed target despite amber/red score
+  // (can happen if frostRisk margin 0-3 and tb is already above T_needed)
+  if(tb>=T_needed){
+    out+='<div class="res ok"><div class="rl">No upload needed</div><div style="font-size:17px;font-weight:600;margin-bottom:4px">Fuel temp already sufficient</div><div class="rs">'+tb.toFixed(1)+'°C ≥ target '+T_needed.toFixed(1)+'°C — marginal risk but no upload will help further</div></div>';
+    out+=detailTable(mb,tb,null,null,tb,T_needed,cap,acType,null);
+    o.innerHTML=out;
+    return;
+  }
+
+  if(tn<=T_needed){
+    out+='<div class="res err"><div class="rl">Cannot resolve via fuel upload</div><div style="font-size:17px;font-weight:600;margin-bottom:4px">New fuel at '+tn.toFixed(1)+'°C — too cold</div><div class="rs">New fuel must be warmer than '+T_needed.toFixed(1)+'°C to reach target. De-icing recommended.</div></div>';
+    o.innerHTML=out;
+    return;
+  }
+
+  var mn_exact=mb*cp(tb)*(T_needed-tb)/(cp(tn)*(tn-T_needed));
+  var mn=Math.ceil(mn_exact);
+  var tot=mb+mn;
+  var tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn));
+  var mn_simple=Math.ceil(mb*(T_needed-tb)/(tn-T_needed));
+  var saving=mn_simple-mn;
+  var cl='info';
+  var capWarning='';
+
+  if(tot>cap){
+    var effMn=Math.max(0,cap-mb);
+    var effTot=mb+effMn;
+    var tf_cap=effMn>0?(mb*cp(tb)*tb+effMn*cp(tn)*tn)/(mb*cp(tb)+effMn*cp(tn)):tb;
+    if(tf_cap>=T_needed){
+      capWarning='<div class="res cap"><div class="rl">Inner tank cap reached</div><div style="font-size:15px;font-weight:600">'+effMn.toLocaleString('en-US')+' kg already reaches '+tf_cap.toFixed(1)+'°C</div><div class="rs">No benefit loading beyond '+cap.toLocaleString('en-US')+' kg total</div></div>';
+      mn=effMn;tot=effTot;tf=tf_cap;cl='ok';
+    } else {
+      capWarning='<div class="res cap"><div class="rl">Inner tank cap limiting</div><div style="font-size:15px;font-weight:600">Max useful: '+(cap-mb).toLocaleString('en-US')+' kg → '+tf_cap.toFixed(1)+'°C</div><div class="rs">Target '+T_needed.toFixed(1)+'°C not reachable via fuel alone. De-icing recommended.</div></div>';
+      mn=cap-mb;tot=cap;tf=tf_cap;cl='warn';
     }
   }
+
+  // Post-upload frost assessment
+  var postRisk=frostRisk(tf,wxDP);
+  out+=frostBoxHtml(tf,wxOAT,wxDP,'After upload — fuel at '+tf.toFixed(1)+'°C');
+  out+=capWarning;
+
+  var uploadLabel=cl==='warn'?'Maximum useful upload':'Upload to reach low risk';
+  out+='<div class="res '+cl+'"><div class="rl">'+uploadLabel+'</div><div class="rv">'+mn.toLocaleString('en-US')+' kg</div><div class="rs">Target '+T_needed.toFixed(1)+'°C = frost point '+fp.toFixed(1)+'°C + 3°C (FAA margin) · New fuel @ '+tn.toFixed(1)+'°C</div></div>';
+  out+=detailTable(mb,tb,mn,tn,tf,T_needed,cap,acType,saving);
 
   o.innerHTML=out;
-}
-
-function detailTable(mb,tb,mn,tn,T_needed,cap,acLabel,tf,saving,oat,dp){
-  var html='<div class="det"><table>';
-  html+='<tr><td>On board</td><td>'+mb.toLocaleString('en-US')+' kg @ '+tb.toFixed(1)+'°C</td></tr>';
-  if(mn!=null&&mn>0){
-    html+='<tr><td>To upload (min)</td><td>'+mn.toLocaleString('en-US')+' kg @ '+tn.toFixed(1)+'°C</td></tr>';
-    html+='<tr class="sep"><td>Total</td><td>'+(mb+mn).toLocaleString('en-US')+' kg</td></tr>';
-  } else {
-    html+='<tr class="sep"><td>Total</td><td>'+mb.toLocaleString('en-US')+' kg</td></tr>';
-  }
-  html+='<tr><td>Inner tank cap</td><td>'+cap.toLocaleString('en-US')+' kg ('+acLabel+')</td></tr>';
-  if(tf!=null)html+='<tr><td>Final wing temp</td><td>'+tf.toFixed(1)+'°C</td></tr>';
-  if(T_needed!=null)html+='<tr><td>Target temp</td><td>'+T_needed.toFixed(1)+'°C</td></tr>';
-  if(oat!=null){
-    html+='<tr class="sep"><td>OAT ('+wxStation+')</td><td>'+oat.toFixed(1)+'°C</td></tr>';
-    html+='<tr><td>Dew point</td><td>'+dp.toFixed(1)+'°C</td></tr>';
-    html+='<tr><td>Frost point</td><td>'+frostPoint(dp).toFixed(1)+'°C</td></tr>';
-    if(tf!=null)html+='<tr><td>Wing margin to frost pt</td><td>'+(tf-frostPoint(dp)).toFixed(1)+'°C</td></tr>';
-  }
-  if(saving!=null&&mn>0){
-    html+='<tr class="sep"><td>cp on board</td><td>'+cp(tb).toFixed(4)+' kJ/(kg·K)</td></tr>';
-    html+='<tr><td>cp new fuel</td><td>'+cp(tn).toFixed(4)+' kJ/(kg·K)</td></tr>';
-    html+='<tr><td>vs simple model</td><td>'+(saving>=0?'-':'+')+Math.abs(saving).toLocaleString('en-US')+' kg</td></tr>';
-  }
-  html+='</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
-  return html;
 }
 </script></body></html>
