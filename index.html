@@ -1,7 +1,13 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>De-ice Fuel</title>
 <script src="airports.js"></script>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f2f2f7;padding:20px 16px 40px}h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:20px}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}.lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}.fl{font-size:13px;color:#8e8e93;margin-bottom:3px}.fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}.fr:last-child{margin-bottom:0}.fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}.fr input:focus{outline:none;border-color:#007aff}.fr input.target-auto{color:#007aff;border-color:#007aff;background:#f0f6ff}.fr input.target-manual{color:#1c1c1e}.fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}.unit{font-size:15px;color:#8e8e93;min-width:28px}.sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}.sgn:active{background:#bdd4f8}.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid #007aff;margin-bottom:0}.seg button{flex:1;padding:10px 6px;font-size:14px;font-weight:600;border:none;background:#fff;color:#007aff;cursor:pointer}.seg button.active{background:#007aff;color:#fff}.fetch-btn{flex-shrink:0;padding:10px 14px;font-size:14px;font-weight:600;border-radius:10px;border:none;background:#007aff;color:#fff;cursor:pointer;white-space:nowrap}.fetch-btn:active{background:#0062cc}.wx-info{font-size:12px;color:#8e8e93;margin-top:8px;min-height:16px}.target-badge{font-size:11px;font-weight:600;color:#185FA5;background:#e8f0fe;border-radius:6px;padding:2px 8px;margin-left:6px}.target-hint{font-size:11px;color:#8e8e93;margin-top:4px}button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}.res{border-radius:14px;padding:16px;margin-bottom:12px}.rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}.rv{font-size:38px;font-weight:700;line-height:1.1}.rs{font-size:13px;margin-top:5px;opacity:.85}.info{background:#e8f0fe;color:#1a56db}.ok{background:#e6f4ea;color:#1e6e3c}.warn{background:#fef3e2;color:#b45309}.err{background:#fce8e8;color:#c0392b}.cap{background:#fff3e0;color:#e65100}.det{background:#fff;border-radius:14px;padding:16px}.note{font-size:11px;color:#8e8e93;margin-top:10px;text-align:center}table{width:100%;font-size:14px;border-collapse:collapse}td{padding:5px 0}td:last-child{text-align:right;font-weight:500;color:#1c1c1e}td:first-child{color:#8e8e93}.sep td{border-top:1px solid #e5e5ea;padding-top:9px}.frost-box{border-radius:14px;padding:16px;margin-bottom:12px}.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}.frost-row{display:flex;align-items:flex-start;gap:10px}.frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}.frost-main{font-size:15px;font-weight:600;margin-bottom:3px}.frost-sub{font-size:12px;opacity:.85;line-height:1.5}.f-green{background:#e6f4ea;color:#1e6e3c}.f-yellow{background:#fef3e2;color:#b45309}.f-orange{background:#fff3e0;color:#e65100}.f-red{background:#fce8e8;color:#c0392b}</style></head><body>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f2f2f7;padding:20px 16px 40px}h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:8px}.disclaimer{background:#fce8e8;border-radius:12px;padding:12px 14px;margin-bottom:20px}.disclaimer-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#c0392b;margin-bottom:4px}.disclaimer-body{font-size:11px;color:#7b1f1f;line-height:1.5}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}.lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}.lbl-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:20px;line-height:1.4}.badge-auto{background:#007aff;color:#fff}.badge-manual{background:#e0e0e5;color:#48484a}.fl{font-size:13px;color:#8e8e93;margin-bottom:3px}.fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}.fr:last-child{margin-bottom:0}.fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1.5px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}.fr input:focus{outline:none}.fr input.target-auto{color:#007aff;border-color:#007aff;background:#f0f6ff}.fr input.target-manual{color:#1c1c1e;border-color:#e0e0e5;background:#f9f9fb}.fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}.unit{font-size:15px;color:#8e8e93;min-width:28px}.sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}.sgn:active{background:#bdd4f8}.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid #007aff;margin-bottom:0}.seg button{flex:1;padding:10px 6px;font-size:14px;font-weight:600;border:none;background:#fff;color:#007aff;cursor:pointer}.seg button.active{background:#007aff;color:#fff}.fetch-btn{flex-shrink:0;padding:10px 14px;font-size:14px;font-weight:600;border-radius:10px;border:none;background:#007aff;color:#fff;cursor:pointer;white-space:nowrap}.fetch-btn:active{background:#0062cc}.wx-info{font-size:12px;color:#8e8e93;margin-top:8px;min-height:16px}.target-hint{font-size:11px;color:#8e8e93;margin-top:6px;line-height:1.4}button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}.res{border-radius:14px;padding:16px;margin-bottom:12px}.rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}.rv{font-size:38px;font-weight:700;line-height:1.1}.rs{font-size:13px;margin-top:5px;opacity:.85}.info{background:#e8f0fe;color:#1a56db}.ok{background:#e6f4ea;color:#1e6e3c}.warn{background:#fef3e2;color:#b45309}.err{background:#fce8e8;color:#c0392b}.cap{background:#fff3e0;color:#e65100}.det{background:#fff;border-radius:14px;padding:16px}.note{font-size:11px;color:#8e8e93;margin-top:10px;text-align:center}table{width:100%;font-size:14px;border-collapse:collapse}td{padding:5px 0}td:last-child{text-align:right;font-weight:500;color:#1c1c1e}td:first-child{color:#8e8e93}.sep td{border-top:1px solid #e5e5ea;padding-top:9px}.frost-box{border-radius:14px;padding:16px;margin-bottom:12px}.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}.frost-row{display:flex;align-items:flex-start;gap:10px}.frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}.frost-main{font-size:15px;font-weight:600;margin-bottom:3px}.frost-sub{font-size:12px;opacity:.85;line-height:1.5}.f-green{background:#e6f4ea;color:#1e6e3c}.f-yellow{background:#fef3e2;color:#b45309}.f-orange{background:#fff3e0;color:#e65100}.f-red{background:#fce8e8;color:#c0392b}</style></head><body>
+
 <h1>✈️ De-ice Fuel</h1>
+
+<div class="disclaimer">
+  <div class="disclaimer-title">⚠ Not for operational use</div>
+  <div class="disclaimer-body">This tool provides indicative estimates only. The final responsibility for the clean aircraft concept and the decision to depart with or without de-icing rests solely with the aircraft commander, in accordance with applicable regulations and the operator's procedures. Do not use this tool as a substitute for official pre-flight inspection or approved de-icing procedures.</div>
+</div>
 
 <div class="card">
   <div class="lbl">Aircraft type</div>
@@ -36,12 +42,17 @@
 </div>
 
 <div class="card">
-  <div class="lbl">Minimum final temperature <span id="target_badge" style="display:none" class="target-badge">auto</span></div>
+  <div class="lbl-row">
+    <span class="lbl" style="margin-bottom:0">Minimum final temperature</span>
+    <span class="badge badge-manual" id="target_badge">manual</span>
+  </div>
   <div class="fl">Target temperature</div>
   <div class="fr">
-    <input type="number" id="tt" value="5" inputmode="decimal" class="target-manual"><span class="unit">°C</span><button class="sgn" onclick="tog('tt');setManualTarget()">±</button>
+    <input type="number" id="tt" value="5" inputmode="decimal" class="target-manual">
+    <span class="unit">°C</span>
+    <button class="sgn" onclick="tog('tt');setManualTarget()">±</button>
   </div>
-  <div class="target-hint" id="target_hint"></div>
+  <div class="target-hint" id="target_hint">Set manually or fetch airport weather to auto-calculate</div>
 </div>
 
 <button class="calc" onclick="c()">Calculate</button>
@@ -65,16 +76,30 @@ function frostPoint(dp){if(dp>=0)return 0;return dp+1+(Math.abs(dp)*0.02);}
 
 function computeAutoTarget(oat,dp){
   var fp=frostPoint(dp),spread=oat-dp;
-  if(oat>15||spread>10)return{T:0,reason:'No frost risk — OAT '+oat.toFixed(1)+'°C, spread '+spread.toFixed(1)+'°C. Minimum load.'};
+  if(oat>15||spread>10)return{T:0,reason:'No frost risk (OAT '+oat.toFixed(1)+'°C, spread '+spread.toFixed(1)+'°C) — minimum load.'};
   var t=Math.round(Math.max(fp+3,1)*10)/10;
-  return{T:t,reason:'Frost point '+fp.toFixed(1)+'°C + 3°C safety margin (FAA). Spread '+spread.toFixed(1)+'°C.'};
+  return{T:t,reason:'Frost point '+fp.toFixed(1)+'°C + 3°C FAA safety margin (spread '+spread.toFixed(1)+'°C).'};
+}
+
+function setAutoTarget(T,reason){
+  isAutoTarget=true;
+  var inp=document.getElementById('tt');
+  inp.value=T.toFixed(1);
+  inp.className='target-auto';
+  var badge=document.getElementById('target_badge');
+  badge.textContent='auto';
+  badge.className='badge badge-auto';
+  document.getElementById('target_hint').textContent=reason;
 }
 
 function setManualTarget(){
   isAutoTarget=false;
-  document.getElementById('tt').className='target-manual';
-  document.getElementById('target_badge').style.display='none';
-  document.getElementById('target_hint').textContent='Manual override active';
+  var inp=document.getElementById('tt');
+  inp.className='target-manual';
+  var badge=document.getElementById('target_badge');
+  badge.textContent='manual';
+  badge.className='badge badge-manual';
+  document.getElementById('target_hint').textContent='Manual override — auto disabled';
 }
 document.getElementById('tt').addEventListener('input',function(){setManualTarget();});
 
@@ -99,12 +124,7 @@ function fetchWeather(){
       wxOAT=T;wxDP=dp;wxStation=ap.data[2];
       info.textContent=ap.data[2]+': OAT '+T.toFixed(1)+'°C  |  RH '+RH+'%  |  DP '+dp.toFixed(1)+'°C  |  Spread '+(T-dp).toFixed(1)+'°C';
       var at=computeAutoTarget(T,dp);
-      isAutoTarget=true;
-      var inp=document.getElementById('tt');
-      inp.value=at.T.toFixed(1);
-      inp.className='target-auto';
-      document.getElementById('target_badge').style.display='';
-      document.getElementById('target_hint').textContent=at.reason;
+      setAutoTarget(at.T,at.reason);
     })
     .catch(function(){info.textContent='Error fetching weather — check connection';});
 }
@@ -161,6 +181,6 @@ function c(){
   +'<tr class="sep"><td>cp on board</td><td>'+cp(tb).toFixed(4)+' kJ/(kg·K)</td></tr>'
   +'<tr><td>cp new fuel</td><td>'+cp(tn).toFixed(4)+' kJ/(kg·K)</td></tr>'
   +'<tr><td>vs simple model</td><td>'+(saving>=0?'-':'+')+(Math.abs(saving)).toLocaleString('en-US')+' kg</td></tr>'
-  +'</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
+  +'</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost criteria: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
 }
 </script></body></html>
