@@ -1,6 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>De-ice Fuel</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f2f2f7;padding:20px 16px 40px}h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:20px}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}.lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}.fl{font-size:13px;color:#8e8e93;margin-bottom:3px}.fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}.fr:last-child{margin-bottom:0}.fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}.fr input:focus{outline:none;border-color:#007aff}.fr input.target{color:#007aff}.fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}.unit{font-size:15px;color:#8e8e93;min-width:28px}.sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}.sgn:active{background:#bdd4f8}.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid #007aff;margin-bottom:0}.seg button{flex:1;padding:10px 6px;font-size:14px;font-weight:600;border:none;background:#fff;color:#007aff;cursor:pointer}.seg button.active{background:#007aff;color:#fff}.fetch-btn{flex-shrink:0;padding:10px 14px;font-size:14px;font-weight:600;border-radius:10px;border:none;background:#007aff;color:#fff;cursor:pointer;white-space:nowrap}.fetch-btn:active{background:#0062cc}.metar-info{font-size:12px;color:#8e8e93;margin-top:8px;min-height:16px}button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}.res{border-radius:14px;padding:16px;margin-bottom:12px}.rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}.rv{font-size:38px;font-weight:700;line-height:1.1}.rs{font-size:13px;margin-top:5px;opacity:.85}.info{background:#e8f0fe;color:#1a56db}.ok{background:#e6f4ea;color:#1e6e3c}.warn{background:#fef3e2;color:#b45309}.err{background:#fce8e8;color:#c0392b}.cap{background:#fff3e0;color:#e65100}.det{background:#fff;border-radius:14px;padding:16px}.note{font-size:11px;color:#8e8e93;margin-top:10px;text-align:center}table{width:100%;font-size:14px;border-collapse:collapse}td{padding:5px 0}td:last-child{text-align:right;font-weight:500;color:#1c1c1e}td:first-child{color:#8e8e93}.sep td{border-top:1px solid #e5e5ea;padding-top:9px}.frost-box{border-radius:14px;padding:16px;margin-bottom:12px}.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}.frost-row{display:flex;align-items:flex-start;gap:10px}.frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}.frost-main{font-size:15px;font-weight:600;margin-bottom:3px}.frost-sub{font-size:12px;opacity:.85;line-height:1.5}.f-green{background:#e6f4ea;color:#1e6e3c}.f-yellow{background:#fef3e2;color:#b45309}.f-orange{background:#fff3e0;color:#e65100}.f-red{background:#fce8e8;color:#c0392b}</style></head><body>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>De-ice Fuel</title>
+<script src="airports.js"></script>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,sans-serif;background:#f2f2f7;padding:20px 16px 40px}h1{font-size:22px;font-weight:600;color:#1c1c1e;margin-bottom:20px}.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px}.lbl{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#8e8e93;margin-bottom:10px}.fl{font-size:13px;color:#8e8e93;margin-bottom:3px}.fr{display:flex;align-items:center;gap:8px;margin-bottom:10px}.fr:last-child{margin-bottom:0}.fr input{flex:1;font-size:20px;font-weight:500;color:#1c1c1e;padding:10px 12px;border-radius:10px;border:1px solid #e0e0e5;background:#f9f9fb;text-align:right;-webkit-appearance:none}.fr input:focus{outline:none;border-color:#007aff}.fr input.target{color:#007aff}.fr input.airport{text-align:left;text-transform:uppercase;letter-spacing:.05em;font-size:18px}.unit{font-size:15px;color:#8e8e93;min-width:28px}.sgn{font-size:17px;font-weight:600;color:#007aff;background:#e8f0fe;border:none;border-radius:10px;width:40px;height:44px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center}.sgn:active{background:#bdd4f8}.seg{display:flex;border-radius:10px;overflow:hidden;border:1px solid #007aff;margin-bottom:0}.seg button{flex:1;padding:10px 6px;font-size:14px;font-weight:600;border:none;background:#fff;color:#007aff;cursor:pointer}.seg button.active{background:#007aff;color:#fff}.fetch-btn{flex-shrink:0;padding:10px 14px;font-size:14px;font-weight:600;border-radius:10px;border:none;background:#007aff;color:#fff;cursor:pointer;white-space:nowrap}.fetch-btn:active{background:#0062cc}.wx-info{font-size:12px;color:#8e8e93;margin-top:8px;min-height:16px}button.calc{width:100%;padding:15px;font-size:17px;font-weight:600;border-radius:14px;border:none;background:#007aff;color:#fff;margin-bottom:12px}.res{border-radius:14px;padding:16px;margin-bottom:12px}.rl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}.rv{font-size:38px;font-weight:700;line-height:1.1}.rs{font-size:13px;margin-top:5px;opacity:.85}.info{background:#e8f0fe;color:#1a56db}.ok{background:#e6f4ea;color:#1e6e3c}.warn{background:#fef3e2;color:#b45309}.err{background:#fce8e8;color:#c0392b}.cap{background:#fff3e0;color:#e65100}.det{background:#fff;border-radius:14px;padding:16px}.note{font-size:11px;color:#8e8e93;margin-top:10px;text-align:center}table{width:100%;font-size:14px;border-collapse:collapse}td{padding:5px 0}td:last-child{text-align:right;font-weight:500;color:#1c1c1e}td:first-child{color:#8e8e93}.sep td{border-top:1px solid #e5e5ea;padding-top:9px}.frost-box{border-radius:14px;padding:16px;margin-bottom:12px}.frost-title{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}.frost-row{display:flex;align-items:flex-start;gap:10px}.frost-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:2px}.frost-main{font-size:15px;font-weight:600;margin-bottom:3px}.frost-sub{font-size:12px;opacity:.85;line-height:1.5}.f-green{background:#e6f4ea;color:#1e6e3c}.f-yellow{background:#fef3e2;color:#b45309}.f-orange{background:#fff3e0;color:#e65100}.f-red{background:#fce8e8;color:#c0392b}</style></head><body>
 <h1>✈️ De-ice Fuel</h1>
-
 <div class="card">
   <div class="lbl">Aircraft type</div>
   <div class="seg">
@@ -32,9 +33,8 @@
     <input type="text" id="airport" class="airport" placeholder="LIRF / FCO" maxlength="4" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="characters" spellcheck="false">
     <button class="fetch-btn" onclick="fetchWeather()">Fetch</button>
   </div>
-  <div class="metar-info" id="wx_info"></div>
+  <div class="wx-info" id="wx_info"></div>
 </div>
-
 <button class="calc" onclick="c()">Calculate</button>
 <div id="o"></div>
 
@@ -43,59 +43,6 @@ var acType='320';
 var INNER_CAP={'320':11000,'321':12000};
 var wxOAT=null,wxDP=null,wxStation='';
 
-var AIRPORTS={
-  'LIRF':[41.804,12.251,'Roma Fiumicino'],  'FCO':[41.804,12.251,'Roma Fiumicino'],
-  'LIRA':[41.654,12.589,'Roma Ciampino'],   'CIA':[41.654,12.589,'Roma Ciampino'],
-  'LIML':[45.445,9.277,'Milano Linate'],    'LIN':[45.445,9.277,'Milano Linate'],
-  'LIMC':[45.630,8.723,'Milano Malpensa'],  'MXP':[45.630,8.723,'Milano Malpensa'],
-  'LIPZ':[45.505,12.352,'Venezia'],         'VCE':[45.505,12.352,'Venezia'],
-  'LIPE':[44.535,11.289,'Bologna'],         'BLQ':[44.535,11.289,'Bologna'],
-  'LIMF':[45.200,7.649,'Torino'],           'TRN':[45.200,7.649,'Torino'],
-  'LIRN':[40.886,14.291,'Napoli'],          'NAP':[40.886,14.291,'Napoli'],
-  'LICC':[37.467,15.066,'Catania'],         'CTA':[37.467,15.066,'Catania'],
-  'LICJ':[38.176,13.091,'Palermo'],         'PMO':[38.176,13.091,'Palermo'],
-  'LIBR':[40.659,17.947,'Brindisi'],        'BDS':[40.659,17.947,'Brindisi'],
-  'LICA':[38.905,16.242,'Lamezia'],         'SUF':[38.905,16.242,'Lamezia'],
-  'LIPQ':[45.827,13.472,'Trieste'],         'TRS':[45.827,13.472,'Trieste'],
-  'LIME':[45.669,9.704,'Bergamo'],          'BGY':[45.669,9.704,'Bergamo'],
-  'LIRQ':[43.810,11.205,'Firenze'],         'FLR':[43.810,11.205,'Firenze'],
-  'LIRP':[43.683,10.393,'Pisa'],            'PSA':[43.683,10.393,'Pisa'],
-  'EDDM':[48.354,11.786,'München'],         'MUC':[48.354,11.786,'München'],
-  'EDDF':[50.033,8.571,'Frankfurt'],        'FRA':[50.033,8.571,'Frankfurt'],
-  'EDDB':[52.366,13.503,'Berlin'],          'BER':[52.366,13.503,'Berlin'],
-  'EDDH':[53.630,9.988,'Hamburg'],          'HAM':[53.630,9.988,'Hamburg'],
-  'EGLL':[51.477,-0.461,'London Heathrow'], 'LHR':[51.477,-0.461,'London Heathrow'],
-  'EGKK':[51.148,-0.190,'London Gatwick'],  'LGW':[51.148,-0.190,'London Gatwick'],
-  'EHAM':[52.308,4.764,'Amsterdam'],        'AMS':[52.308,4.764,'Amsterdam'],
-  'LFPG':[49.013,2.550,'Paris CDG'],        'CDG':[49.013,2.550,'Paris CDG'],
-  'LFPO':[48.723,2.380,'Paris Orly'],       'ORY':[48.723,2.380,'Paris Orly'],
-  'LEMD':[40.472,-3.561,'Madrid'],          'MAD':[40.472,-3.561,'Madrid'],
-  'LEBL':[41.297,2.078,'Barcelona'],        'BCN':[41.297,2.078,'Barcelona'],
-  'LPPT':[38.774,-9.134,'Lisboa'],          'LIS':[38.774,-9.134,'Lisboa'],
-  'LSZH':[47.458,8.548,'Zürich'],           'ZRH':[47.458,8.548,'Zürich'],
-  'LOWI':[47.260,11.344,'Innsbruck'],       'INN':[47.260,11.344,'Innsbruck'],
-  'LOWW':[48.110,16.570,'Wien'],            'VIE':[48.110,16.570,'Wien'],
-  'LKPR':[50.100,14.260,'Praha'],           'PRG':[50.100,14.260,'Praha'],
-  'EPWA':[52.165,20.967,'Warszawa'],        'WAW':[52.165,20.967,'Warszawa'],
-  'EFHK':[60.317,24.963,'Helsinki'],        'HEL':[60.317,24.963,'Helsinki'],
-  'ENGM':[60.194,11.100,'Oslo'],            'OSL':[60.194,11.100,'Oslo'],
-  'ESSA':[59.651,17.918,'Stockholm'],       'ARN':[59.651,17.918,'Stockholm'],
-  'EKCH':[55.618,12.656,'København'],       'CPH':[55.618,12.656,'København'],
-  'LEPA':[39.552,2.739,'Palma'],            'PMI':[39.552,2.739,'Palma'],
-  'GCTS':[28.044,-16.572,'Tenerife Sur'],   'TFS':[28.044,-16.572,'Tenerife Sur'],
-  'GCFV':[28.452,-13.864,'Fuerteventura'], 'FUE':[28.452,-13.864,'Fuerteventura'],
-  'GCLP':[27.932,-15.387,'Gran Canaria'],   'LPA':[27.932,-15.387,'Gran Canaria'],
-  'LHBP':[47.433,19.261,'Budapest'],        'BUD':[47.433,19.261,'Budapest'],
-  'LDZA':[45.743,16.069,'Zagreb'],          'ZAG':[45.743,16.069,'Zagreb'],
-  'LJLJ':[46.224,14.458,'Ljubljana'],       'LJU':[46.224,14.458,'Ljubljana'],
-  'LYBE':[44.818,20.309,'Beograd'],         'BEG':[44.818,20.309,'Beograd'],
-  'LWSK':[41.961,21.621,'Skopje'],          'SKP':[41.961,21.621,'Skopje'],
-  'LGAV':[37.936,23.944,'Atene'],           'ATH':[37.936,23.944,'Atene'],
-  'LCLK':[34.875,33.625,'Larnaca'],         'LCA':[34.875,33.625,'Larnaca'],
-  'LTBA':[40.976,28.814,'Istanbul'],        'IST':[40.976,28.814,'Istanbul'],
-  'UUEE':[55.972,37.415,'Moskva'],          'SVO':[55.972,37.415,'Moskva'],
-};
-
 function setAcType(t){
   acType=t;
   document.getElementById('btn_320').className=t==='320'?'active':'';
@@ -103,42 +50,38 @@ function setAcType(t){
 }
 function cp(T){return 1.6+0.0035*T;}
 function tog(id){var el=document.getElementById(id),v=parseFloat(el.value);if(!isNaN(v))el.value=(-v).toString();}
+function dewFromRH(T,RH){var a=17.625,b=243.04,g=Math.log(RH/100)+a*T/(b+T);return b*g/(a-g);}
+function frostPoint(dp){if(dp>=0)return 0;return dp+1+(Math.abs(dp)*0.02);}
 
-function dewFromRH(T,RH){
-  var a=17.625,b=243.04;
-  var gamma=Math.log(RH/100)+a*T/(b+T);
-  return b*gamma/(a-gamma);
-}
-function frostPoint(dp){
-  if(dp>=0)return 0;
-  return dp+1+(Math.abs(dp)*0.02);
+function lookupAirport(raw){
+  if(!raw||raw.length<3)return null;
+  if(raw.length===4&&AIRPORTS_ICAO[raw])return{icao:raw,data:AIRPORTS_ICAO[raw]};
+  if(raw.length===3&&IATA_TO_ICAO[raw]){var ic=IATA_TO_ICAO[raw];return{icao:ic,data:AIRPORTS_ICAO[ic]};}
+  if(raw.length===4){var k=Object.keys(AIRPORTS_ICAO).find(function(k){return k===raw});if(k)return{icao:k,data:AIRPORTS_ICAO[k]};}
+  return null;
 }
 
 function fetchWeather(){
   var raw=document.getElementById('airport').value.trim().toUpperCase();
-  if(raw.length<3){document.getElementById('wx_info').textContent='Enter a valid code';return;}
-  var ap=AIRPORTS[raw];
-  if(!ap){document.getElementById('wx_info').textContent='Airport not in database — try another code';return;}
-  document.getElementById('wx_info').textContent='Fetching weather for '+ap[2]+'…';
+  var info=document.getElementById('wx_info');
+  var ap=lookupAirport(raw);
+  if(!ap){info.textContent='Airport "'+raw+'" not found — try ICAO (4 chars) or IATA (3 chars)';return;}
+  info.textContent='Fetching weather for '+ap.data[2]+'…';
   wxOAT=null;wxDP=null;
-  var url='https://api.open-meteo.com/v1/forecast?latitude='+ap[0]+'&longitude='+ap[1]+'&current=temperature_2m,relative_humidity_2m&wind_speed_unit=kn&timezone=auto';
+  var url='https://api.open-meteo.com/v1/forecast?latitude='+ap.data[0]+'&longitude='+ap.data[1]+'&current=temperature_2m,relative_humidity_2m&timezone=auto';
   fetch(url)
     .then(function(r){return r.json();})
     .then(function(d){
-      var T=d.current.temperature_2m;
-      var RH=d.current.relative_humidity_2m;
-      var dp=dewFromRH(T,RH);
-      wxOAT=T; wxDP=dp; wxStation=ap[2];
-      document.getElementById('wx_info').textContent=ap[2]+': OAT '+T.toFixed(1)+'°C  |  RH '+RH+'%  |  DP '+dp.toFixed(1)+'°C  |  Spread '+(T-dp).toFixed(1)+'°C';
+      var T=d.current.temperature_2m,RH=d.current.relative_humidity_2m,dp=dewFromRH(T,RH);
+      wxOAT=T;wxDP=dp;wxStation=ap.data[2];
+      info.textContent=ap.data[2]+': OAT '+T.toFixed(1)+'°C  |  RH '+RH+'%  |  DP '+dp.toFixed(1)+'°C  |  Spread '+(T-dp).toFixed(1)+'°C';
     })
-    .catch(function(){document.getElementById('wx_info').textContent='Error fetching weather — check connection';});
+    .catch(function(e){info.textContent='Error fetching weather — check connection';});
 }
 document.getElementById('airport').addEventListener('keydown',function(e){if(e.key==='Enter')fetchWeather();});
 
 function frostScore(tf,oat,dp){
-  var fp=frostPoint(dp);
-  var spread=oat-dp;
-  var margin=tf-fp;
+  var fp=frostPoint(dp),spread=oat-dp,margin=tf-fp;
   if(tf>0){
     if(spread>3)return '<div class="frost-box f-green"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#1e6e3c"></div><div><div class="frost-main">No frost — wing above 0°C</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C — condensation possible but no ice. OAT '+oat.toFixed(1)+'°C / DP '+dp.toFixed(1)+'°C / Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
     return '<div class="frost-box f-yellow"><div class="frost-title">Frost risk</div><div class="frost-row"><div class="frost-dot" style="background:#b45309"></div><div><div class="frost-main">Condensation only — no ice</div><div class="frost-sub">Wing '+tf.toFixed(1)+'°C (above 0°C) — liquid water only. Monitor if OAT drops. Spread '+spread.toFixed(1)+'°C</div></div></div></div>';
@@ -149,39 +92,16 @@ function frostScore(tf,oat,dp){
 }
 
 function c(){
-  var mb=parseFloat(document.getElementById('mb').value),
-      tb=parseFloat(document.getElementById('tb').value),
-      tn=parseFloat(document.getElementById('tn').value),
-      T=parseFloat(document.getElementById('tt').value),
-      o=document.getElementById('o');
+  var mb=parseFloat(document.getElementById('mb').value),tb=parseFloat(document.getElementById('tb').value),tn=parseFloat(document.getElementById('tn').value),T=parseFloat(document.getElementById('tt').value),o=document.getElementById('o');
   if([mb,tb,tn,T].some(isNaN)){o.innerHTML='<div class="res err"><div class="rl">Error</div><div style="font-size:17px;font-weight:600">Fill in all fields</div></div>';return;}
-  var cap=INNER_CAP[acType];
-  var acLabel=acType==='320'?'A319/A320 (inner cap: 11,000 kg)':'A321 (wing cap: 12,000 kg)';
-  if(tb>=T){
-    var fs=wxOAT!==null?frostScore(tb,wxOAT,wxDP):'';
-    o.innerHTML=fs+'<div class="res ok"><div class="rl">Total in tank</div><div class="rv">'+mb.toLocaleString('en-US')+' kg</div><div class="rs">Already at '+tb.toFixed(1)+'°C — no extra fuel needed</div></div>';
-    return;
-  }
+  var cap=INNER_CAP[acType],acLabel=acType==='320'?'A319/A320 (inner cap: 11,000 kg)':'A321 (wing cap: 12,000 kg)';
+  if(tb>=T){var fs=wxOAT!==null?frostScore(tb,wxOAT,wxDP):'';o.innerHTML=fs+'<div class="res ok"><div class="rl">Total in tank</div><div class="rv">'+mb.toLocaleString('en-US')+' kg</div><div class="rs">Already at '+tb.toFixed(1)+'°C — no extra fuel needed</div></div>';return;}
   if(tn<=T){o.innerHTML='<div class="res err"><div class="rl">Impossible</div><div style="font-size:17px;font-weight:600">New fuel at '+tn.toFixed(1)+'°C</div><div class="rs">New fuel must be warmer than '+T.toFixed(1)+'°C</div></div>';return;}
-  var mn_exact=mb*cp(tb)*(T-tb)/(cp(tn)*(tn-T));
-  var mn=Math.ceil(mn_exact);
-  var tot=mb+mn;
-  var tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn));
-  var mn_simple=Math.ceil(mb*(T-tb)/(tn-T));
-  var saving=mn_simple-mn;
-  var cl=mn>mb*3?'warn':'info';
-  var capWarning='';
+  var mn_exact=mb*cp(tb)*(T-tb)/(cp(tn)*(tn-T)),mn=Math.ceil(mn_exact),tot=mb+mn,tf=(mb*cp(tb)*tb+mn*cp(tn)*tn)/(mb*cp(tb)+mn*cp(tn)),mn_simple=Math.ceil(mb*(T-tb)/(tn-T)),saving=mn_simple-mn,cl=mn>mb*3?'warn':'info',capWarning='';
   if(tot>cap){
-    var effMn=Math.max(0,cap-mb);
-    var effTot=mb+effMn;
-    var tf_cap=effMn>0?(mb*cp(tb)*tb+effMn*cp(tn)*tn)/(mb*cp(tb)+effMn*cp(tn)):tb;
-    if(tf_cap>=T){
-      capWarning='<div class="res cap"><div class="rl">Inner tank cap reached</div><div style="font-size:15px;font-weight:600">'+effMn.toLocaleString('en-US')+' kg reaches '+tf_cap.toFixed(1)+'°C</div><div class="rs">No benefit beyond '+cap.toLocaleString('en-US')+' kg ('+acLabel+')</div></div>';
-      mn=effMn;tot=effTot;tf=tf_cap;cl='ok';
-    } else {
-      capWarning='<div class="res cap"><div class="rl">Inner tank cap limiting</div><div style="font-size:15px;font-weight:600">Max: '+(cap-mb).toLocaleString('en-US')+' kg → '+tf_cap.toFixed(1)+'°C</div><div class="rs">Target not reachable via fuel alone. Consider de-icing.</div></div>';
-      mn=cap-mb;tot=cap;tf=tf_cap;cl='warn';
-    }
+    var effMn=Math.max(0,cap-mb),effTot=mb+effMn,tf_cap=effMn>0?(mb*cp(tb)*tb+effMn*cp(tn)*tn)/(mb*cp(tb)+effMn*cp(tn)):tb;
+    if(tf_cap>=T){capWarning='<div class="res cap"><div class="rl">Inner tank cap reached</div><div style="font-size:15px;font-weight:600">'+effMn.toLocaleString('en-US')+' kg reaches '+tf_cap.toFixed(1)+'°C</div><div class="rs">No benefit beyond '+cap.toLocaleString('en-US')+' kg ('+acLabel+')</div></div>';mn=effMn;tot=effTot;tf=tf_cap;cl='ok';}
+    else{capWarning='<div class="res cap"><div class="rl">Inner tank cap limiting</div><div style="font-size:15px;font-weight:600">Max: '+(cap-mb).toLocaleString('en-US')+' kg → '+tf_cap.toFixed(1)+'°C</div><div class="rs">Target not reachable via fuel. Consider de-icing.</div></div>';mn=cap-mb;tot=cap;tf=tf_cap;cl='warn';}
   }
   var frostHtml=wxOAT!==null?frostScore(tf,wxOAT,wxDP):'';
   o.innerHTML=frostHtml+capWarning
@@ -192,13 +112,10 @@ function c(){
   +'<tr class="sep"><td>Total</td><td>'+tot.toLocaleString('en-US')+' kg</td></tr>'
   +'<tr><td>Inner tank cap</td><td>'+cap.toLocaleString('en-US')+' kg</td></tr>'
   +'<tr><td>Final wing temp</td><td>'+tf.toFixed(1)+'°C</td></tr>'
-  +(wxOAT!==null?'<tr class="sep"><td>OAT ('+wxStation+')</td><td>'+wxOAT.toFixed(1)+'°C</td></tr>'
-  +'<tr><td>Dew point</td><td>'+wxDP.toFixed(1)+'°C</td></tr>'
-  +'<tr><td>Frost point</td><td>'+frostPoint(wxDP).toFixed(1)+'°C</td></tr>'
-  +'<tr><td>Wing margin to frost pt</td><td>'+(tf-frostPoint(wxDP)).toFixed(1)+'°C</td></tr>':'')
+  +(wxOAT!==null?'<tr class="sep"><td>OAT ('+wxStation+')</td><td>'+wxOAT.toFixed(1)+'°C</td></tr>'+'<tr><td>Dew point</td><td>'+wxDP.toFixed(1)+'°C</td></tr>'+'<tr><td>Frost point</td><td>'+frostPoint(wxDP).toFixed(1)+'°C</td></tr>'+'<tr><td>Wing margin to frost pt</td><td>'+(tf-frostPoint(wxDP)).toFixed(1)+'°C</td></tr>':'')
   +'<tr class="sep"><td>cp on board</td><td>'+cp(tb).toFixed(4)+' kJ/(kg·K)</td></tr>'
   +'<tr><td>cp new fuel</td><td>'+cp(tn).toFixed(4)+' kJ/(kg·K)</td></tr>'
   +'<tr><td>vs simple model</td><td>'+(saving>=0?'-':'+')+(Math.abs(saving)).toLocaleString('en-US')+' kg</td></tr>'
-  +'</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost: FAA/ICAO · Weather: open-meteo.com</div></div>';
+  +'</table><div class="note">Jet-A/A1 cp(T)=1.6+0.0035·T · Frost: FAA/ICAO · Weather: open-meteo.com · Airports: ourairports.com</div></div>';
 }
 </script></body></html>
